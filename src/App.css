@@ -77,12 +77,15 @@ body {
   clear: both;
   content: "";
   display: table;
+  margin-right: 1rem;
 }
 
 .history {
   border: 1px solid #20b7f6;
   border-radius: 5px;
   padding: 10px;
+  text-align: center;
+  margin-left: 10px;
 }
 
 .history h4 {
@@ -96,6 +99,8 @@ body {
   margin: 0;
   font-size: 14px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .history button {

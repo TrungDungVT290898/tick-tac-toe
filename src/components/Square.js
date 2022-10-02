@@ -1,11 +1,17 @@
-import React from "react";
+import React from 'react'
 
-function Square({"Your code here"}) {
+function Square ({ id, value, handleClick }) {
   return (
-    <button className={"square"} onClick={"Your code here"}>
-      "Your code here"
+    <button
+      id={id}
+      className={'square'}
+      onClick={() => {
+        handleClick(id)
+      }}
+    >
+      {value}
     </button>
-  );
+  )
 }
 
-export default Square;
+export default Square
