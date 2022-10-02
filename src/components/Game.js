@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Board from './Board'
 import History from './History'
-let isStartup = true
+
 let currentHistory = null
 function Game () {
   const startHistory = [
@@ -18,6 +18,7 @@ function Game () {
   //Declaring a Winner
   useEffect(() => {
     const newWinner = calculateWinner(squares)
+
     setWinner(newWinner)
   }, [squares])
 
@@ -55,6 +56,7 @@ function Game () {
     if (winner || newSquares[i]) {
       return
     }
+    console.log(`current history:${currentHistory}`)
     if (currentHistory) {
       let his = histories.find(s => s.id === currentHistory)
       if (his) {
@@ -62,19 +64,19 @@ function Game () {
       }
     }
     newSquares[i] = xIsNext ? 'X' : 'O'
-    isStartup = false
     currentHistory = null
+
+    setHistories([
+      ...histories,
+      {
+        id: `his-${histories.length}`,
+        content: `Go to move #${histories.length}`,
+        square: newSquares
+      }
+    ])
+
     setSquares(newSquares)
-    if (!currentHistory && !isStartup) {
-      setHistories([
-        ...histories,
-        {
-          id: `his-${histories.length}`,
-          content: `Go to move #${histories.length}`,
-          square: squares.slice()
-        }
-      ])
-    }
+
     setXIsNext(prevState => !prevState)
   }
 
@@ -84,7 +86,7 @@ function Game () {
     setSquares(Array(9).fill(null))
     setWinner(null)
     setHistories(startHistory)
-    isStartup = true
+
     currentHistory = null
   }
   const handleHistoryClick = i => {
