@@ -91,7 +91,7 @@ function Game () {
   }
   const handleHistoryClick = i => {
     currentHistory = `${i}`
-    setSquares(histories.find(s => s.id == i).square)
+    setSquares(histories.find(s => s.id === i).square)
   }
   return (
     <div className='main'>
