@@ -17,19 +17,7 @@ function Game () {
   const [histories, setHistories] = useState(startHistory)
   //Declaring a Winner
   useEffect(() => {
-    if (!currentHistory && !isStartup) {
-      setHistories([
-        ...histories,
-        {
-          id: `his-${histories.length}`,
-          content: `Go to move #${histories.length}`,
-          square: squares.slice()
-        }
-      ])
-    }
-
     const newWinner = calculateWinner(squares)
-
     setWinner(newWinner)
   }, [squares])
 
@@ -77,6 +65,16 @@ function Game () {
     isStartup = false
     currentHistory = null
     setSquares(newSquares)
+    if (!currentHistory && !isStartup) {
+      setHistories([
+        ...histories,
+        {
+          id: `his-${histories.length}`,
+          content: `Go to move #${histories.length}`,
+          square: squares.slice()
+        }
+      ])
+    }
     setXIsNext(prevState => !prevState)
   }
 
